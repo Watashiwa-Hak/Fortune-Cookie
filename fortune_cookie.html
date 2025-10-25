@@ -1,0 +1,1743 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Daily Fortune Cookie</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Kalam:wght@400;700&family=Noto+Serif:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary-color: #F2C94C;
+      --secondary-color: #EB5757;
+      --background-color: #FFF9E6;
+      --text-color: #3E2723;
+      --accent-color: #4ECDC4;
+      --shadow-color: rgba(0, 0, 0, 0.2);
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Noto Serif', serif;
+      background-color: var(--background-color);
+      color: var(--text-color);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background-image: url('data:image/png;base64,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');
+    }
+    
+    .container {
+      max-width: 800px;
+      width: 90%;
+      padding: 2rem;
+      margin: 2rem auto;
+      text-align: center;
+    }
+    
+    header {
+      margin-bottom: 2rem;
+    }
+    
+    h1 {
+      font-size: 2.5rem;
+      color: var(--secondary-color);
+      margin-bottom: 0.5rem;
+      text-shadow: 2px 2px 4px var(--shadow-color);
+    }
+    
+    .subtitle {
+      font-size: 1.2rem;
+      color: var(--text-color);
+      font-style: italic;
+      margin-bottom: 1.5rem;
+    }
+    
+    .decoration {
+      display: flex;
+      justify-content: center;
+      margin: 1rem 0;
+    }
+    
+    .decoration span {
+      font-size: 1.5rem;
+      margin: 0 0.5rem;
+      color: var(--secondary-color);
+    }
+    
+    .fortune-container {
+      position: relative;
+      width: 300px;
+      height: 300px;
+      margin: 0 auto 2rem;
+      perspective: 1000px;
+    }
+    
+    .cookie {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+    
+    .cookie:hover {
+      transform: scale(1.05);
+      filter: drop-shadow(0 0 10px rgba(242, 201, 76, 0.5));
+    }
+    
+    .cookie-top, .cookie-bottom {
+      position: absolute;
+      width: 100%;
+      height: 50%;
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+      transition: all 0.8s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+    }
+    
+    .cookie-top {
+      top: 0;
+      background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjE1MCIgdmlld0JveD0iMCAwIDMwMCAxNTAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTI5MCAxMjBDMjkwIDYwIDIzMCAwIDE1MCAwQzcwIDAgMTAgNjAgMTAgMTIwQzEwIDEzNSA1MCAxNTAgMTUwIDE1MEMyNTAgMTUwIDI5MCAxMzUgMjkwIDEyMFoiIGZpbGw9IiNGMkM5NEMiLz48cGF0aCBkPSJNMjgwIDExMEMyODAgNTUgMjI1IDEwIDE1MCAxMEM3NSAxMCAyMCA1NSAyMCAxMTBDMjAgMTI1IDYwIDE0MCAxNTAgMTQwQzI0MCAxNDAgMjgwIDEyNSAyODAgMTEwWiIgZmlsbD0iI0Y1RDY3RCIvPjxwYXRoIGQ9Ik0yNzAgMTAwQzI3MCA1MCAyMjAgMjAgMTUwIDIwQzgwIDIwIDMwIDUwIDMwIDEwMEMzMCAxMTUgNzAgMTMwIDE1MCAxMzBDMjMwIDEzMCAyNzAgMTE1IDI3MCAxMDBaIiBmaWxsPSIjRjhFMkFEIi8+PC9zdmc+');
+      transform-origin: bottom center;
+    }
+    
+    .cookie-bottom {
+      bottom: 0;
+      background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjE1MCIgdmlld0JveD0iMCAwIDMwMCAxNTAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTI5MCAzMEMyOTAgOTAgMjMwIDE1MCAxNTAgMTUwQzcwIDE1MCAxMCA5MCAxMCAzMEMxMCAxNSA1MCAwIDE1MCAwQzI1MCAwIDI5MCAxNSAyOTAgMzBaIiBmaWxsPSIjRjJDOTRDIi8+PHBhdGggZD0iTTI4MCA0MEMyODAgOTUgMjI1IDE0MCAxNTAgMTQwQzc1IDE0MCAyMCA5NSAyMCA0MEMyMCAyNSA2MCAxMCAxNTAgMTBDMjQwIDEwIDI4MCAyNSAyODAgNDBaIiBmaWxsPSIjRjVENjdEIi8+PHBhdGggZD0iTTI3MCA1MEMyNzAgMTAwIDIyMCAxMzAgMTUwIDEzMEM4MCAxMzAgMzAgMTAwIDMwIDUwQzMwIDM1IDcwIDIwIDE1MCAyMEMyMzAgMjAgMjcwIDM1IDI3MCA1MFoiIGZpbGw9IiNGOEUyQUQiLz48L3N2Zz4=');
+      transform-origin: top center;
+    }
+    
+    .fortune-paper {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0);
+      width: 80%;
+      max-width: 300px;
+      background-color: white;
+      padding: 1.5rem;
+      border-radius: 5px;
+      box-shadow: 0 4px 15px var(--shadow-color);
+      opacity: 0;
+      transition: all 0.8s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+      z-index: -1;
+    }
+    
+    .fortune-paper::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-image: url('data:image/png;base64,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');
+      opacity: 0.1;
+      z-index: -1;
+      border-radius: 5px;
+    }
+    
+    .fortune-text {
+      font-family: 'Kalam', cursive;
+      font-size: 1.2rem;
+      line-height: 1.6;
+      color: var(--text-color);
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.5s ease 0.8s;
+    }
+    
+    .category-tag {
+      display: inline-block;
+      margin-top: 1rem;
+      padding: 0.3rem 0.8rem;
+      background-color: var(--accent-color);
+      color: white;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.5s ease 1s;
+    }
+    
+    .actions {
+      margin-top: 2rem;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.5s ease 1.2s;
+    }
+    
+    .btn {
+      background-color: var(--accent-color);
+      color: white;
+      border: none;
+      padding: 0.8rem 1.5rem;
+      font-size: 1rem;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 8px var(--shadow-color);
+      font-family: 'Noto Serif', serif;
+    }
+    
+    .btn:hover {
+      background-color: #3dbdb5;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 12px var(--shadow-color);
+    }
+    
+    .btn:active {
+      transform: translateY(0);
+      box-shadow: 0 2px 4px var(--shadow-color);
+    }
+    
+    .btn-new {
+      display: none;
+    }
+    
+    .instructions {
+      margin-top: 2rem;
+      font-style: italic;
+      color: #666;
+      font-size: 0.9rem;
+    }
+    
+    .sparkle {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      background-color: white;
+      border-radius: 50%;
+      opacity: 0;
+      pointer-events: none;
+    }
+    
+    footer {
+      margin-top: 3rem;
+      font-size: 0.8rem;
+      color: #666;
+    }
+    
+    /* Animation classes */
+    .cookie-opened .cookie-top {
+      transform: translateY(-50px) rotateX(45deg);
+      opacity: 0.8;
+    }
+    
+    .cookie-opened .cookie-bottom {
+      transform: translateY(50px) rotateX(-45deg);
+      opacity: 0.8;
+    }
+    
+    .cookie-opened .fortune-paper {
+      transform: translate(-50%, -50%) scale(1);
+      opacity: 1;
+      z-index: 1;
+    }
+    
+    .cookie-opened .fortune-text,
+    .cookie-opened .category-tag,
+    .cookie-opened .actions {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    .cookie-opened .btn-new {
+      display: inline-block;
+    }
+    
+    /* Sparkle animation */
+    @keyframes sparkle {
+      0% {
+        transform: scale(0) rotate(0deg);
+        opacity: 0;
+      }
+      50% {
+        transform: scale(1) rotate(180deg);
+        opacity: 1;
+      }
+      100% {
+        transform: scale(0) rotate(360deg);
+        opacity: 0;
+      }
+    }
+    
+    /* Responsive styles */
+    @media (max-width: 768px) {
+      .container {
+        padding: 1rem;
+      }
+      
+      h1 {
+        font-size: 2rem;
+      }
+      
+      .fortune-container {
+        width: 250px;
+        height: 250px;
+      }
+      
+      .fortune-text {
+        font-size: 1rem;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      h1 {
+        font-size: 1.8rem;
+      }
+      
+      .subtitle {
+        font-size: 1rem;
+      }
+      
+      .fortune-container {
+        width: 200px;
+        height: 200px;
+      }
+      
+      .fortune-paper {
+        padding: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Daily Fortune Cookie</h1>
+      <p class="subtitle">Click the cookie for your daily wisdom</p>
+      <div class="decoration">
+        <span>✨</span>
+        <span>🥠</span>
+        <span>✨</span>
+      </div>
+    </header>
+    
+    <div class="fortune-container">
+      <div class="cookie" id="fortune-cookie">
+        <div class="cookie-top"></div>
+        <div class="cookie-bottom"></div>
+      </div>
+      
+      <div class="fortune-paper">
+        <p class="fortune-text" id="fortune-text">Click the cookie to reveal your fortune...</p>
+        <span class="category-tag" id="category-tag">wisdom</span>
+        <div class="actions">
+          <button class="btn btn-new" id="new-fortune">New Fortune</button>
+        </div>
+      </div>
+    </div>
+    
+    <p class="instructions">Click the fortune cookie to reveal your daily wisdom tip</p>
+  </div>
+  
+  <footer>
+    <p>© 2025 Daily Fortune Cookie | Made with ❤️</p>
+  </footer>
+  
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const cookie = document.getElementById('fortune-cookie');
+      const fortuneText = document.getElementById('fortune-text');
+      const categoryTag = document.getElementById('category-tag');
+      const newFortuneBtn = document.getElementById('new-fortune');
+      
+      // Fortune tips data
+      let fortuneTips = [];
+      
+      // Load fortune tips from JSON file
+      async function loadFortuneTips() {
+        try {
+          const response = await fetch('fortune_tips.json');
+          if (!response.ok) {
+            throw new Error('Failed to load fortune tips');
+          }
+          const data = await response.json();
+          fortuneTips = data.fortuneTips;
+          console.log('Fortune tips loaded:', fortuneTips.length);
+        } catch (error) {
+          console.error('Error loading fortune tips:', error);
+          // Fallback tips in case JSON fails to load
+          fortuneTips = [
+            {
+      "id": 1,
+      "tip": "Start each day with gratitude, and watch how your perspective changes.",
+      "category": "mindfulness"
+    },
+    {
+      "id": 2,
+      "tip": "Drinking water first thing in the morning jumpstarts your metabolism.",
+      "category": "health"
+    },
+    {
+      "id": 3,
+      "tip": "The 5-minute rule: If a task takes less than 5 minutes, do it now.",
+      "category": "productivity"
+    },
+    {
+      "id": 4,
+      "tip": "Your posture affects your mood. Sit up straight to feel more confident.",
+      "category": "wellness"
+    },
+    {
+      "id": 5,
+      "tip": "Reading before bed improves sleep quality more than screen time.",
+      "category": "sleep"
+    },
+    {
+      "id": 6,
+      "tip": "A 10-minute walk can boost your energy more than a cup of coffee.",
+      "category": "energy"
+    },
+    {
+      "id": 7,
+      "tip": "Save money by waiting 24 hours before making non-essential purchases.",
+      "category": "finance"
+    },
+    {
+      "id": 8,
+      "tip": "Declutter your space, declutter your mind.",
+      "category": "organization"
+    },
+    {
+      "id": 9,
+      "tip": "The most effective way to learn is to teach someone else.",
+      "category": "learning"
+    },
+    {
+      "id": 10,
+      "tip": "Smiling, even when forced, can genuinely improve your mood.",
+      "category": "happiness"
+    },
+    {
+      "id": 11,
+      "tip": "Eat the rainbow: different colored foods provide different nutrients.",
+      "category": "nutrition"
+    },
+    {
+      "id": 12,
+      "tip": "Deep breathing for just 2 minutes can reduce stress significantly.",
+      "category": "stress-relief"
+    },
+    {
+      "id": 13,
+      "tip": "The 20-20-20 rule: Every 20 minutes, look at something 20 feet away for 20 seconds to reduce eye strain.",
+      "category": "health"
+    },
+    {
+      "id": 14,
+      "tip": "Write down your thoughts before bed to clear your mind for better sleep.",
+      "category": "sleep"
+    },
+    {
+      "id": 15,
+      "tip": "Small acts of kindness boost your happiness as much as the recipient's.",
+      "category": "happiness"
+    },
+    {
+      "id": 16,
+      "tip": "Batch similar tasks together to improve focus and efficiency.",
+      "category": "productivity"
+    },
+    {
+      "id": 17,
+      "tip": "Plants in your workspace can improve concentration and productivity.",
+      "category": "environment"
+    },
+    {
+      "id": 18,
+      "tip": "The most effective workout is the one you'll actually do consistently.",
+      "category": "fitness"
+    },
+    {
+      "id": 19,
+      "tip": "Spend money on experiences rather than things for greater happiness.",
+      "category": "happiness"
+    },
+    {
+      "id": 20,
+      "tip": "Listen to understand, not to respond.",
+      "category": "relationships"
+    },
+    {
+      "id": 21,
+      "tip": "Keeping a food journal can double your weight loss results.",
+      "category": "health"
+    },
+    {
+      "id": 22,
+      "tip": "A clean desk leads to clearer thinking and better focus.",
+      "category": "productivity"
+    },
+    {
+      "id": 23,
+      "tip": "Exposure to morning sunlight helps regulate your sleep cycle.",
+      "category": "sleep"
+    },
+    {
+      "id": 24,
+      "tip": "Learning a new skill creates new neural pathways in your brain.",
+      "category": "personal-growth"
+    },
+    {
+      "id": 25,
+      "tip": "Chewing gum can improve concentration and reduce stress.",
+      "category": "focus"
+    },
+    {
+      "id": 26,
+      "tip": "The 2-minute rule: If you don't want to do something, commit to just 2 minutes. Often, you'll continue.",
+      "category": "motivation"
+    },
+    {
+      "id": 27,
+      "tip": "Keeping a gratitude journal can significantly increase your happiness.",
+      "category": "mindfulness"
+    },
+    {
+      "id": 28,
+      "tip": "Proper hydration improves skin appearance more than expensive creams.",
+      "category": "beauty"
+    },
+    {
+      "id": 29,
+      "tip": "Cooking at home is healthier and saves money compared to eating out.",
+      "category": "finance"
+    },
+    {
+      "id": 30,
+      "tip": "Taking regular breaks improves productivity, not reduces it.",
+      "category": "productivity"
+    },
+    {
+      "id": 31,
+      "tip": "Saying 'no' to things that don't serve you creates space for what does.",
+      "category": "boundaries"
+    },
+    {
+      "id": 32,
+      "tip": "Stretching for 5 minutes in the morning can energize your entire day.",
+      "category": "energy"
+    },
+    {
+      "id": 33,
+      "tip": "Automate your savings to build wealth without thinking about it.",
+      "category": "finance"
+    },
+    {
+      "id": 34,
+      "tip": "Listening to music while doing chores makes them more enjoyable.",
+      "category": "motivation"
+    },
+    {
+      "id": 35,
+      "tip": "Practicing mindfulness reduces anxiety and improves decision-making.",
+      "category": "mental-health"
+    },
+    {
+      "id": 36,
+      "tip": "Eating protein with every meal helps control hunger throughout the day.",
+      "category": "nutrition"
+    },
+    {
+      "id": 37,
+      "tip": "Complimenting others creates a positive atmosphere around you.",
+      "category": "relationships"
+    },
+    {
+      "id": 38,
+      "tip": "Cold showers boost immunity and increase alertness.",
+      "category": "health"
+    },
+    {
+      "id": 39,
+      "tip": "Visualizing success increases your chances of achieving it.",
+      "category": "success"
+    },
+    {
+      "id": 40,
+      "tip": "Keeping a consistent sleep schedule improves sleep quality dramatically.",
+      "category": "sleep"
+    },
+    {
+      "id": 41,
+      "tip": "Learning to say 'thank you' instead of apologizing can boost your confidence.",
+      "category": "communication"
+    },
+    {
+      "id": 42,
+      "tip": "Spending time in nature reduces stress and improves creativity.",
+      "category": "wellness"
+    },
+    {
+      "id": 43,
+      "tip": "Meal prepping saves time, money, and helps maintain healthy eating habits.",
+      "category": "organization"
+    },
+    {
+      "id": 44,
+      "tip": "Practicing forgiveness benefits your health more than holding grudges.",
+      "category": "mental-health"
+    },
+    {
+      "id": 45,
+      "tip": "Standing up and stretching every hour improves circulation and focus.",
+      "category": "productivity"
+    },
+    {
+      "id": 46,
+      "tip": "Keeping a consistent morning routine sets a positive tone for the day.",
+      "category": "habits"
+    },
+    {
+      "id": 47,
+      "tip": "Drinking a glass of water before meals helps with portion control.",
+      "category": "nutrition"
+    },
+    {
+      "id": 48,
+      "tip": "Celebrating small wins motivates you to achieve bigger goals.",
+      "category": "motivation"
+    },
+    {
+      "id": 49,
+      "tip": "Limiting social media use can significantly improve your mental health.",
+      "category": "digital-wellness"
+    },
+    {
+      "id": 50,
+      "tip": "The most important relationship you have is with yourself.",
+      "category": "self-care"
+    },
+    {
+    "id": 51,
+    "tip": "Writing down your goals increases the likelihood of achieving them.",
+    "category": "success"
+  },
+  {
+    "id": 52,
+    "tip": "Turn off notifications to reduce distractions and improve focus.",
+    "category": "digital-wellness"
+  },
+  {
+    "id": 53,
+    "tip": "Volunteering boosts your mood and sense of purpose.",
+    "category": "happiness"
+  },
+  {
+    "id": 54,
+    "tip": "Investing in quality sleep is investing in your long-term health.",
+    "category": "sleep"
+  },
+  {
+    "id": 55,
+    "tip": "Keeping a to-do list helps you stay organized and productive.",
+    "category": "productivity"
+  },
+  {
+    "id": 56,
+    "tip": "A tidy morning leads to a productive day.",
+    "category": "habits"
+  },
+  {
+    "id": 57,
+    "tip": "Using affirmations can rewire your mindset over time.",
+    "category": "self-care"
+  },
+  {
+    "id": 58,
+    "tip": "Eating slowly helps you recognize fullness and avoid overeating.",
+    "category": "nutrition"
+  },
+  {
+    "id": 59,
+    "tip": "Making your bed in the morning creates a sense of accomplishment.",
+    "category": "habits"
+  },
+  {
+    "id": 60,
+    "tip": "Scheduling downtime is essential for avoiding burnout.",
+    "category": "wellness"
+  },
+  {
+    "id": 61,
+    "tip": "Limit caffeine in the afternoon to improve sleep quality.",
+    "category": "health"
+  },
+  {
+    "id": 62,
+    "tip": "Spending time with loved ones improves emotional well-being.",
+    "category": "relationships"
+  },
+  {
+    "id": 63,
+    "tip": "Celebrating progress builds momentum toward your goals.",
+    "category": "motivation"
+  },
+  {
+    "id": 64,
+    "tip": "A clear goal beats a vague wish every time.",
+    "category": "success"
+  },
+  {
+    "id": 65,
+    "tip": "Don't multitask—focus on one task at a time for better results.",
+    "category": "focus"
+  },
+  {
+    "id": 66,
+    "tip": "Investing in experiences builds lasting happiness.",
+    "category": "happiness"
+  },
+  {
+    "id": 67,
+    "tip": "Walking barefoot on natural ground can reduce inflammation and stress.",
+    "category": "wellness"
+  },
+  {
+    "id": 68,
+    "tip": "Spending 10 minutes planning your day saves hours of wasted time.",
+    "category": "productivity"
+  },
+  {
+    "id": 69,
+    "tip": "Be kind to yourself. Self-compassion improves resilience.",
+    "category": "mental-health"
+  },
+  {
+    "id": 70,
+    "tip": "Learn from failure. It's a stepping stone to growth.",
+    "category": "personal-growth"
+  },
+  {
+    "id": 71,
+    "tip": "Meditate daily, even for just 5 minutes, to sharpen focus.",
+    "category": "mindfulness"
+  },
+  {
+    "id": 72,
+    "tip": "Drink herbal tea instead of sugary drinks for a health boost.",
+    "category": "nutrition"
+  },
+  {
+    "id": 73,
+    "tip": "Turn off screens an hour before bed for deeper sleep.",
+    "category": "sleep"
+  },
+  {
+    "id": 74,
+    "tip": "Say something positive to yourself every morning.",
+    "category": "self-care"
+  },
+  {
+    "id": 75,
+    "tip": "Reflect on what you’re grateful for every night.",
+    "category": "mindfulness"
+  },
+  {
+    "id": 76,
+    "tip": "Break large tasks into smaller steps to reduce overwhelm.",
+    "category": "productivity"
+  },
+  {
+    "id": 77,
+    "tip": "Practice active listening to build stronger connections.",
+    "category": "communication"
+  },
+  {
+    "id": 78,
+    "tip": "Unplug for a day to reset your mental clarity.",
+    "category": "digital-wellness"
+  },
+  {
+    "id": 79,
+    "tip": "Consume content that uplifts and educates.",
+    "category": "personal-growth"
+  },
+  {
+    "id": 80,
+    "tip": "Do something creative to relieve stress.",
+    "category": "stress-relief"
+  },
+  {
+    "id": 81,
+    "tip": "Track your habits to build accountability and awareness.",
+    "category": "habits"
+  },
+  {
+    "id": 82,
+    "tip": "Spend time with pets to boost oxytocin and reduce stress.",
+    "category": "wellness"
+  },
+  {
+    "id": 83,
+    "tip": "Silence is a powerful tool for reflection and insight.",
+    "category": "mindfulness"
+  },
+  {
+    "id": 84,
+    "tip": "Write morning pages to clear mental clutter.",
+    "category": "self-care"
+  },
+  {
+    "id": 85,
+    "tip": "Don’t compare your journey with others. Focus on your path.",
+    "category": "mental-health"
+  },
+  {
+    "id": 86,
+    "tip": "Say ‘thank you’ more often—it strengthens relationships.",
+    "category": "relationships"
+  },
+  {
+    "id": 87,
+    "tip": "Laugh every day to reduce stress and improve mood.",
+    "category": "happiness"
+  },
+  {
+    "id": 88,
+    "tip": "Add lemon to your water for extra vitamin C and digestion aid.",
+    "category": "nutrition"
+  },
+  {
+    "id": 89,
+    "tip": "Reflect weekly to assess what’s working and what’s not.",
+    "category": "success"
+  },
+  {
+    "id": 90,
+    "tip": "Use a timer to stay on task and avoid procrastination.",
+    "category": "productivity"
+  },
+  {
+    "id": 91,
+    "tip": "Stay curious. Learning something new keeps your brain young.",
+    "category": "learning"
+  },
+  {
+    "id": 92,
+    "tip": "Practice minimalism—less clutter equals more peace.",
+    "category": "organization"
+  },
+  {
+    "id": 93,
+    "tip": "Speak kindly to yourself—your inner voice shapes your reality.",
+    "category": "self-care"
+  },
+  {
+    "id": 94,
+    "tip": "Ask for help. It shows strength, not weakness.",
+    "category": "mental-health"
+  },
+  {
+    "id": 95,
+    "tip": "Keep your phone out of reach when working.",
+    "category": "focus"
+  },
+  {
+    "id": 96,
+    "tip": "Start meals with vegetables to promote fullness and nutrition.",
+    "category": "nutrition"
+  },
+  {
+    "id": 97,
+    "tip": "Challenge yourself daily to step out of your comfort zone.",
+    "category": "personal-growth"
+  },
+  {
+    "id": 98,
+    "tip": "Find a mentor to accelerate your growth.",
+    "category": "learning"
+  },
+  {
+    "id": 99,
+    "tip": "Journal your thoughts to process emotions clearly.",
+    "category": "mental-health"
+  },
+  {
+    "id": 100,
+    "tip": "Learn a new language to expand your brain and cultural awareness.",
+    "category": "learning"
+  },
+  {
+    "id": 101,
+    "tip": "Practice saying 'no' to protect your time and energy.",
+    "category": "boundaries"
+  },
+  {
+    "id": 102,
+    "tip": "Write a 'done list' to reflect on daily achievements.",
+    "category": "motivation"
+  },
+  {
+    "id": 103,
+    "tip": "Learn to cook a signature healthy meal.",
+    "category": "nutrition"
+  },
+  {
+    "id": 104,
+    "tip": "Put your phone on airplane mode during meals.",
+    "category": "digital-wellness"
+  },
+  {
+    "id": 105,
+    "tip": "Set a daily intention to stay focused on what matters.",
+    "category": "mindfulness"
+  },
+  {
+    "id": 106,
+    "tip": "Use 'if-then' planning to follow through on goals.",
+    "category": "productivity"
+  },
+  {
+    "id": 107,
+    "tip": "Drink green tea for a clean energy boost and antioxidants.",
+    "category": "nutrition"
+  },
+  {
+    "id": 108,
+    "tip": "Keep a water bottle near you to encourage hydration.",
+    "category": "health"
+  },
+  {
+    "id": 109,
+    "tip": "Learn one new word a day to expand your vocabulary.",
+    "category": "learning"
+  },
+  {
+    "id": 110,
+    "tip": "Start a 30-day challenge to kickstart positive habits.",
+    "category": "motivation"
+  },
+  {
+    "id": 111,
+    "tip": "Practice mindful eating by savoring each bite.",
+    "category": "mindfulness"
+  },
+  {
+    "id": 112,
+    "tip": "Revisit your goals monthly and revise if needed.",
+    "category": "success"
+  },
+  {
+    "id": 113,
+    "tip": "Wear clothes that make you feel confident.",
+    "category": "self-care"
+  },
+  {
+    "id": 114,
+    "tip": "Tidy up one small area each day to reduce clutter.",
+    "category": "organization"
+  },
+  {
+    "id": 115,
+    "tip": "Reward yourself after finishing hard tasks.",
+    "category": "productivity"
+  },
+  {
+    "id": 116,
+    "tip": "Use public accountability to stick to your goals.",
+    "category": "motivation"
+  },
+  {
+    "id": 117,
+    "tip": "Check your posture when using a phone or laptop.",
+    "category": "health"
+  },
+  {
+    "id": 118,
+    "tip": "Switch negative self-talk into positive reframing.",
+    "category": "mental-health"
+  },
+  {
+    "id": 119,
+    "tip": "Create a wind-down ritual to signal bedtime.",
+    "category": "sleep"
+  },
+  {
+    "id": 120,
+    "tip": "Decline commitments that don't align with your values.",
+    "category": "boundaries"
+  },
+  {
+    "id": 121,
+    "tip": "Take a break outdoors for a natural reset.",
+    "category": "wellness"
+  },
+  {
+    "id": 122,
+    "tip": "Keep healthy snacks within reach to avoid junk food.",
+    "category": "nutrition"
+  },
+  {
+    "id": 123,
+    "tip": "Record voice notes when inspiration strikes.",
+    "category": "creativity"
+  },
+  {
+    "id": 124,
+    "tip": "Check in with yourself emotionally each day.",
+    "category": "mental-health"
+  },
+  {
+    "id": 125,
+    "tip": "Create a personal mantra to guide tough moments.",
+    "category": "self-care"
+  },
+  {
+    "id": 126,
+    "tip": "Join a class or group to stay motivated.",
+    "category": "learning"
+  },
+  {
+    "id": 127,
+    "tip": "Avoid screens 30 minutes after waking up.",
+    "category": "digital-wellness"
+  },
+  {
+    "id": 128,
+    "tip": "Use gratitude as a lens during challenging times.",
+    "category": "mindfulness"
+  },
+  {
+    "id": 129,
+    "tip": "Write letters to people who inspire you—even if you never send them.",
+    "category": "relationships"
+  },
+  {
+    "id": 130,
+    "tip": "Get sunlight exposure within an hour of waking.",
+    "category": "health"
+  },
+  {
+    "id": 131,
+    "tip": "Prioritize sleep over late-night scrolling.",
+    "category": "sleep"
+  },
+  {
+    "id": 132,
+    "tip": "Share what you’ve learned to deepen understanding.",
+    "category": "learning"
+  },
+  {
+    "id": 133,
+    "tip": "Do something playful each week to recharge.",
+    "category": "happiness"
+  },
+  {
+    "id": 134,
+    "tip": "Practice deep listening in every conversation.",
+    "category": "communication"
+  },
+  {
+    "id": 135,
+    "tip": "Get a plant and learn to care for it mindfully.",
+    "category": "environment"
+  },
+  {
+    "id": 136,
+    "tip": "End your day with a short reflection journal.",
+    "category": "self-care"
+  },
+  {
+    "id": 137,
+    "tip": "Make your goals visible—put them on your wall or desk.",
+    "category": "motivation"
+  },
+  {
+    "id": 138,
+    "tip": "Use your commute for learning with audiobooks or podcasts.",
+    "category": "productivity"
+  },
+  {
+    "id": 139,
+    "tip": "Challenge yourself to complete a digital detox weekend.",
+    "category": "digital-wellness"
+  },
+  {
+    "id": 140,
+    "tip": "Acknowledge your wins, no matter how small.",
+    "category": "motivation"
+  },
+  {
+    "id": 141,
+    "tip": "Do a brain dump when you're overwhelmed.",
+    "category": "organization"
+  },
+  {
+    "id": 142,
+    "tip": "Set tech-free zones in your home.",
+    "category": "digital-wellness"
+  },
+  {
+    "id": 143,
+    "tip": "Practice mirror talk—say positive things to your reflection.",
+    "category": "self-care"
+  },
+  {
+    "id": 144,
+    "tip": "Find time for silence to reconnect with yourself.",
+    "category": "mindfulness"
+  },
+  {
+    "id": 145,
+    "tip": "Treat rest as productive. Recovery is essential.",
+    "category": "wellness"
+  },
+  {
+    "id": 146,
+    "tip": "Use Sunday to plan your week ahead.",
+    "category": "productivity"
+  },
+  {
+    "id": 147,
+    "tip": "Start a hobby that has no goal other than joy.",
+    "category": "happiness"
+  },
+  {
+    "id": 148,
+    "tip": "Get regular blood tests to track your health.",
+    "category": "health"
+  },
+  {
+    "id": 149,
+    "tip": "Speak your dreams out loud to make them real.",
+    "category": "success"
+  },
+  {
+    "id": 150,
+    "tip": "Remove one toxic influence from your life.",
+    "category": "boundaries"
+  },
+  {
+    "id": 151,
+    "tip": "Limit decision fatigue by creating routines.",
+    "category": "habits"
+  },
+  {
+    "id": 152,
+    "tip": "Start your day with movement—even light stretching counts.",
+    "category": "fitness"
+  },
+  {
+    "id": 153,
+    "tip": "Track your moods to spot emotional patterns.",
+    "category": "mental-health"
+  },
+  {
+    "id": 154,
+    "tip": "Share meals with others to foster connection.",
+    "category": "relationships"
+  },
+  {
+    "id": 155,
+    "tip": "Revisit old hobbies to reconnect with past joys.",
+    "category": "happiness"
+  },
+  {
+    "id": 156,
+    "tip": "Keep your bedroom cool, dark, and quiet for better sleep.",
+    "category": "sleep"
+  },
+  {
+    "id": 157,
+    "tip": "Forgive yourself for past mistakes—you are growing.",
+    "category": "self-care"
+  },
+  {
+    "id": 158,
+    "tip": "Replace 'I have to' with 'I get to' for a mindset shift.",
+    "category": "mindfulness"
+  },
+  {
+    "id": 159,
+    "tip": "Create a vision board to clarify your future.",
+    "category": "success"
+  },
+  {
+    "id": 160,
+    "tip": "Balance effort with rest to sustain long-term motivation.",
+    "category": "motivation"
+  },
+  {
+    "id": 161,
+    "tip": "Cut out one bad habit at a time for lasting change.",
+    "category": "habits"
+  },
+  {
+    "id": 162,
+    "tip": "Practice delayed gratification to strengthen willpower.",
+    "category": "self-discipline"
+  },
+  {
+    "id": 163,
+    "tip": "Read one personal development book a month.",
+    "category": "learning"
+  },
+  {
+    "id": 164,
+    "tip": "Keep a minimalist wallet—only carry essentials.",
+    "category": "organization"
+  },
+  {
+    "id": 165,
+    "tip": "Surround yourself with people who uplift you.",
+    "category": "relationships"
+  },
+  {
+    "id": 166,
+    "tip": "Declutter your phone—delete unused apps weekly.",
+    "category": "digital-wellness"
+  },
+  {
+    "id": 167,
+    "tip": "Celebrate others' wins to cultivate abundance.",
+    "category": "happiness"
+  },
+  {
+    "id": 168,
+    "tip": "Audit your time once a month to realign priorities.",
+    "category": "productivity"
+  },
+  {
+    "id": 169,
+    "tip": "Invest in tools that make healthy habits easier.",
+    "category": "fitness"
+  },
+  {
+    "id": 170,
+    "tip": "Start small to beat procrastination—momentum builds.",
+    "category": "motivation"
+  },
+  {
+    "id": 171,
+    "tip": "Take a full day off each week to recharge.",
+    "category": "wellness"
+  },
+  {
+    "id": 172,
+    "tip": "Rotate your workouts to keep your body guessing.",
+    "category": "fitness"
+  },
+  {
+    "id": 173,
+    "tip": "Use positive peer pressure to stay accountable.",
+    "category": "motivation"
+  },
+  {
+    "id": 174,
+    "tip": "Use white noise or nature sounds to aid sleep.",
+    "category": "sleep"
+  },
+  {
+    "id": 175,
+    "tip": "Ask open-ended questions to deepen relationships.",
+    "category": "communication"
+  },
+  {
+    "id": 176,
+    "tip": "Choose people over perfection.",
+    "category": "relationships"
+  },
+  {
+    "id": 177,
+    "tip": "Practice daily gratitude to shift your perspective.",
+    "category": "mindfulness"
+  },
+  {
+    "id": 178,
+    "tip": "Limit news intake to protect your mental energy.",
+    "category": "digital-wellness"
+  },
+  {
+    "id": 179,
+    "tip": "Learn to breathe through your nose for better health.",
+    "category": "health"
+  },
+  {
+    "id": 180,
+    "tip": "Drink a glass of water before reaching for coffee.",
+    "category": "nutrition"
+  },
+  {
+    "id": 181,
+    "tip": "Don’t check emails first thing—protect your mental space.",
+    "category": "productivity"
+  },
+  {
+    "id": 182,
+    "tip": "Pair a habit you want with one you already do.",
+    "category": "habits"
+  },
+  {
+    "id": 183,
+    "tip": "Practice belly breathing to reduce anxiety.",
+    "category": "stress-relief"
+  },
+  {
+    "id": 184,
+    "tip": "Trust your intuition—it’s often more accurate than you think.",
+    "category": "self-awareness"
+  },
+  {
+    "id": 185,
+    "tip": "Reframe obstacles as opportunities to grow.",
+    "category": "mindset"
+  },
+  {
+    "id": 186,
+    "tip": "Write your future self a letter.",
+    "category": "personal-growth"
+  },
+  {
+    "id": 187,
+    "tip": "Always carry a book with you—you’ll read more.",
+    "category": "learning"
+  },
+  {
+    "id": 188,
+    "tip": "Make space for boredom—it boosts creativity.",
+    "category": "creativity"
+  },
+  {
+    "id": 189,
+    "tip": "Track your screen time weekly and aim to reduce it.",
+    "category": "digital-wellness"
+  },
+  {
+    "id": 190,
+    "tip": "Leave your phone outside the bedroom.",
+    "category": "sleep"
+  },
+  {
+    "id": 191,
+    "tip": "Take cold exposure slowly—start with cold face splashes.",
+    "category": "health"
+  },
+  {
+    "id": 192,
+    "tip": "Speak up for your needs—your voice matters.",
+    "category": "communication"
+  },
+  {
+    "id": 193,
+    "tip": "Practice forgiveness for your own peace.",
+    "category": "mental-health"
+  },
+  {
+    "id": 194,
+    "tip": "Try intermittent fasting to enhance focus and digestion.",
+    "category": "nutrition"
+  },
+  {
+    "id": 195,
+    "tip": "Visualize your ideal day each morning.",
+    "category": "success"
+  },
+  {
+    "id": 196,
+    "tip": "Celebrate progress, not perfection.",
+    "category": "motivation"
+  },
+  {
+    "id": 197,
+    "tip": "Be okay with being a beginner.",
+    "category": "personal-growth"
+  },
+  {
+    "id": 198,
+    "tip": "Set weekly priorities instead of overwhelming to-do lists.",
+    "category": "productivity"
+  },
+  {
+    "id": 199,
+    "tip": "Limit multitasking to reduce errors and stress.",
+    "category": "focus"
+  },
+  {
+    "id": 200,
+    "tip": "Your habits today create your future self—choose wisely.",
+    "category": "habits"
+  },
+  {
+    "id": 201,
+    "tip": "Your mind is like a garden—what you water will grow. Choose your thoughts wisely.",
+    "category": "mindfulness"
+  },
+  {
+    "id": 202,
+    "tip": "Speak to yourself with the same compassion you'd offer a dear friend.",
+    "category": "self-care"
+  },
+  {
+    "id": 203,
+    "tip": "Don’t believe everything you think. Learn to question negative self-talk.",
+    "category": "mental-health"
+  },
+  {
+    "id": 204,
+    "tip": "Time is your most valuable currency—spend it with intention.",
+    "category": "productivity"
+  },
+  {
+    "id": 205,
+    "tip": "Presence is the antidote to anxiety. Focus on the now, not the next.",
+    "category": "mindfulness"
+  },
+  {
+    "id": 206,
+    "tip": "Healing isn't linear. Be patient with your progress.",
+    "category": "wellness"
+  },
+  {
+    "id": 207,
+    "tip": "The quality of your questions determines the quality of your life.",
+    "category": "personal-growth"
+  },
+  {
+    "id": 208,
+    "tip": "Comparison is the thief of joy. Run your own race.",
+    "category": "happiness"
+  },
+  {
+    "id": 209,
+    "tip": "If it costs you your peace, it’s too expensive.",
+    "category": "boundaries"
+  },
+  {
+    "id": 210,
+    "tip": "Gratitude rewires your brain for positivity. Practice it daily.",
+    "category": "mindfulness"
+  },
+  {
+    "id": 211,
+    "tip": "Letting go is not weakness. It’s choosing growth over control.",
+    "category": "mental-health"
+  },
+  {
+    "id": 212,
+    "tip": "True rest includes mental stillness, not just physical inactivity.",
+    "category": "wellness"
+  },
+  {
+    "id": 213,
+    "tip": "Growth happens outside your comfort zone. Lean into discomfort.",
+    "category": "personal-growth"
+  },
+  {
+    "id": 214,
+    "tip": "A calm mind sees more clearly than a busy one.",
+    "category": "focus"
+  },
+  {
+    "id": 215,
+    "tip": "Discipline is choosing what you want most over what you want now.",
+    "category": "motivation"
+  },
+  {
+    "id": 216,
+    "tip": "Make time for silence. It’s where insight often lives.",
+    "category": "mindfulness"
+  },
+  {
+    "id": 217,
+    "tip": "Nourish your body like you would a child you love.",
+    "category": "nutrition"
+  },
+  {
+    "id": 218,
+    "tip": "Sleep is a pillar of health. Protect it like gold.",
+    "category": "sleep"
+  },
+  {
+    "id": 219,
+    "tip": "Everything you consume—food, media, thoughts—shapes your well-being.",
+    "category": "mental-health"
+  },
+  {
+    "id": 220,
+    "tip": "Choose curiosity over judgment—especially toward yourself.",
+    "category": "self-care"
+  },
+  {
+    "id": 221,
+    "tip": "You are not your emotions. You are the awareness behind them.",
+    "category": "emotional-intelligence"
+  },
+  {
+    "id": 222,
+    "tip": "Energy flows where attention goes. Focus intentionally.",
+    "category": "focus"
+  },
+  {
+    "id": 223,
+    "tip": "Walks in nature are therapy with no side effects.",
+    "category": "wellness"
+  },
+  {
+    "id": 224,
+    "tip": "You don’t have to attend every argument you’re invited to.",
+    "category": "relationships"
+  },
+  {
+    "id": 225,
+    "tip": "Breathe like your life depends on it—because it does.",
+    "category": "stress-relief"
+  },
+  {
+    "id": 226,
+    "tip": "You become what you repeat. Choose your habits wisely.",
+    "category": "habits"
+  },
+  {
+    "id": 227,
+    "tip": "It’s okay to outgrow people, places, and patterns.",
+    "category": "personal-growth"
+  },
+  {
+    "id": 228,
+    "tip": "Kindness is strength, not weakness. Be kind anyway.",
+    "category": "relationships"
+  },
+  {
+    "id": 229,
+    "tip": "Forgive yourself for what you didn’t know before you learned it.",
+    "category": "mental-health"
+  },
+  {
+    "id": 230,
+    "tip": "You can't pour from an empty cup. Fill yours first.",
+    "category": "self-care"
+  },
+  {
+    "id": 231,
+    "tip": "What you resist, persists. Accept what is before you change it.",
+    "category": "mindfulness"
+  },
+  {
+    "id": 232,
+    "tip": "A simple walk after meals helps digestion and mood.",
+    "category": "health"
+  },
+  {
+    "id": 233,
+    "tip": "Truth without compassion can harm. Speak with care.",
+    "category": "communication"
+  },
+  {
+    "id": 234,
+    "tip": "Most of your fears are just thoughts. Don’t let them run your life.",
+    "category": "mental-health"
+  },
+  {
+    "id": 235,
+    "tip": "Protect your morning. It sets the tone for your entire day.",
+    "category": "habits"
+  },
+  {
+    "id": 236,
+    "tip": "Journaling clarifies thoughts and reveals patterns. Make it a habit.",
+    "category": "mindfulness"
+  },
+  {
+    "id": 237,
+    "tip": "Progress is better than perfection. Keep moving forward.",
+    "category": "motivation"
+  },
+  {
+    "id": 238,
+    "tip": "Learn to rest, not to quit.",
+    "category": "resilience"
+  },
+  {
+    "id": 239,
+    "tip": "Drink water like it’s your job. Your body and brain will thank you.",
+    "category": "health"
+  },
+  {
+    "id": 240,
+    "tip": "Let go of who you were to become who you’re meant to be.",
+    "category": "personal-growth"
+  },
+  {
+    "id": 241,
+    "tip": "The people you surround yourself with shape your mindset. Choose wisely.",
+    "category": "relationships"
+  },
+  {
+    "id": 242,
+    "tip": "Every ending is a new beginning in disguise.",
+    "category": "mental-health"
+  },
+  {
+    "id": 243,
+    "tip": "Celebrate how far you’ve come, not just how far you have to go.",
+    "category": "motivation"
+  },
+  {
+    "id": 244,
+    "tip": "Replace 'I have to' with 'I get to' for a gratitude boost.",
+    "category": "happiness"
+  },
+  {
+    "id": 245,
+    "tip": "Digital detoxes help you reconnect with what really matters.",
+    "category": "digital-wellness"
+  },
+  {
+    "id": 246,
+    "tip": "Create more than you consume. That’s where fulfillment lies.",
+    "category": "creativity"
+  },
+  {
+    "id": 247,
+    "tip": "Ask for help. Strength is in connection, not isolation.",
+    "category": "mental-health"
+  },
+  {
+    "id": 248,
+    "tip": "You don’t find balance. You create it, moment by moment.",
+    "category": "wellness"
+  },
+  {
+    "id": 249,
+    "tip": "Be the person your future self will thank you for being today.",
+    "category": "personal-growth"
+  },
+  {
+    "id": 250,
+    "tip": "Joy doesn’t only live in the destination—it’s hidden in the journey.",
+    "category": "happiness"
+  }
+          ];
+        }
+      }
+      
+      // Get a random fortune tip
+      function getRandomFortune() {
+        if (fortuneTips.length === 0) {
+          return {
+            tip: "Wisdom comes to those who are patient.",
+            category: "wisdom"
+          };
+        }
+        
+        const randomIndex = Math.floor(Math.random() * fortuneTips.length);
+        return fortuneTips[randomIndex];
+      }
+      
+      // Create sparkle elements
+      function createSparkles() {
+        const container = document.querySelector('.fortune-container');
+        const sparkleCount = 15;
+        
+        for (let i = 0; i < sparkleCount; i++) {
+          const sparkle = document.createElement('div');
+          sparkle.classList.add('sparkle');
+          
+          // Random position around the cookie
+          const angle = Math.random() * Math.PI * 2;
+          const distance = 100 + Math.random() * 50;
+          const x = Math.cos(angle) * distance;
+          const y = Math.sin(angle) * distance;
+          
+          sparkle.style.left = `calc(50% + ${x}px)`;
+          sparkle.style.top = `calc(50% + ${y}px)`;
+          
+          // Random size
+          const size = 5 + Math.random() * 10;
+          sparkle.style.width = `${size}px`;
+          sparkle.style.height = `${size}px`;
+          
+          // Random color
+          const colors = ['#F2C94C', '#EB5757', '#4ECDC4', '#ffffff'];
+          sparkle.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+          
+          // Random animation duration
+          const duration = 0.5 + Math.random() * 1;
+          sparkle.style.animation = `sparkle ${duration}s ease-in-out forwards`;
+          
+          container.appendChild(sparkle);
+          
+          // Remove sparkle after animation
+          setTimeout(() => {
+            sparkle.remove();
+          }, duration * 1000);
+        }
+      }
+      
+      // Typewriter effect for fortune text
+      function typeWriter(text, element, speed = 50) {
+        let i = 0;
+        element.textContent = '';
+        
+        function type() {
+          if (i < text.length) {
+            element.textContent += text.charAt(i);
+            i++;
+            setTimeout(type, speed);
+          }
+        }
+        
+        type();
+      }
+      
+      // Open cookie and show fortune
+      function openCookie() {
+        if (cookie.parentElement.classList.contains('cookie-opened')) {
+          return;
+        }
+        
+        // Play crack sound
+        const crackSound = new Audio('data:audio/wav;base64,UklGRtQFAABXQVZFZm10IBAAAAABAAEARKwAAIhYAQACABAAZGF0YbAFAACAgICAgICAgICAgICAgICAgICAgICAgICAf3hxeH+AfXZ1eHx6fH58e3p5fYGFg4GEgIGJhIWJio2Oi4qKiYyQkpKQj4+PjpCRlZmYlJOTkpOVmJqbl5WVlZWYm52enJqZmJqeo6Wmo6CgoKCjqKuuraupqams...'); // Base64 encoded sound
+        crackSound.volume = 0.5;
+        crackSound.play().catch(e => console.log('Audio play failed:', e));
+        
+        // Add open class
+        cookie.parentElement.classList.add('cookie-opened');
+        
+        // Create sparkle effect
+        createSparkles();
+        
+        // Show fortune with typewriter effect
+        setTimeout(() => {
+          const fortune = getRandomFortune();
+          typeWriter(fortune.tip, fortuneText);
+          categoryTag.textContent = fortune.category;
+        }, 800);
+      }
+      
+      // Reset cookie for new fortune
+      function resetCookie() {
+        cookie.parentElement.classList.remove('cookie-opened');
+        fortuneText.textContent = "Click the cookie to reveal your fortune...";
+        categoryTag.textContent = "wisdom";
+        
+        // Allow time for animation to complete
+        setTimeout(() => {
+          cookie.style.pointerEvents = 'auto';
+        }, 500);
+      }
+      
+      // Event listeners
+      cookie.addEventListener('click', function() {
+        openCookie();
+        cookie.style.pointerEvents = 'none'; // Prevent multiple clicks
+      });
+      
+      newFortuneBtn.addEventListener('click', resetCookie);
+      
+      // Load fortune tips when page loads
+      loadFortuneTips();
+    });
+  </script>
+</body>
+</html>
